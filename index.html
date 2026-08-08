@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy &amp; Support — LISZ</title>
+  <meta name="description" content="LISZ privacy policy and support. Your data stays on your device and in your own iCloud account. We operate no servers and collect nothing." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* LISZ design system - light appearance (BEZZLColors) */
+      --petrol:      #1c3f5e;  /* BEZZLAccent        */
+      --petrol-mid:  #2a5a83;
+      --muted:       #e8eef4;  /* BEZZLAccentMuted   */
+      --paper:       #f7f6f2;  /* BEZZLBackground    */
+      --surface:     #ffffff;  /* BEZZLSurface       */
+      --raised:      #f0eee9;  /* BEZZLSurfaceRaised */
+      --ink:         #14161a;  /* BEZZLTextPrimary   */
+      --ink-light:   #55606c;  /* BEZZLTextSecondary */
+      --rule:        rgba(28,63,94,0.14);
+      --on-petrol:   #ffffff;
+      --amber:       #b45309;  /* BEZZLWarning       */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --petrol:     #5b9ec9;
+        --petrol-mid: #7fb4d6;
+        --muted:      #1e2c38;
+        --paper:      #131210;
+        --surface:    #1c1b18;
+        --raised:     #242320;
+        --ink:        #f2f1ee;
+        --ink-light:  #a8a49c;
+        --rule:       rgba(91,158,201,0.20);
+        --on-petrol:  #0d1218;
+        --amber:      #ffa726;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* -- Header -- */
+    header {
+      background: var(--petrol);
+      padding: 56px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,255,255,0.025) 40px,
+          rgba(255,255,255,0.025) 41px
+        );
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 100px;
+      padding: 6px 16px 6px 7px;
+      margin-bottom: 28px;
+    }
+
+    .app-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--on-petrol);
+      color: var(--petrol);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .app-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 600;
+      color: var(--on-petrol);
+      line-height: 1.12;
+      margin-bottom: 16px;
+      letter-spacing: -0.025em;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .header-meta {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .header-nav {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .header-nav a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+
+    .header-nav a:hover {
+      color: var(--on-petrol);
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    /* -- Callout banner -- */
+    .callout {
+      background: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding: 20px 40px;
+    }
+
+    .callout-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .callout-icon {
+      font-size: 18px;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    .callout p {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .callout strong { font-weight: 600; }
+
+    /* -- Main content -- */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px 96px;
+    }
+
+    section {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 24px;
+    }
+
+    section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-number {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--petrol);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 8px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--ink); font-weight: 600; }
+
+    em { font-style: italic; }
+
+    /* -- Highlight card -- */
+    .zero-card {
+      background: var(--petrol);
+      border-radius: 20px;
+      padding: 32px 36px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zero-card::after {
+      content: '0';
+      position: absolute;
+      right: 4px;
+      top: -34px;
+      font-size: 170px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .zero-card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 15px;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .zero-card strong {
+      color: var(--on-petrol);
+      font-weight: 600;
+    }
+
+    /* -- Fact / permission list -- */
+    .fact-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .fact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 15px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    .fact-list li:last-child { border-bottom: none; }
+
+    .fact-list li::before {
+      content: '\2713';
+      font-size: 12px;
+      color: var(--petrol);
+      font-weight: 700;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .fact-list.permissions li::before { content: '\2022'; font-size: 16px; margin-top: 0; }
+
+    /* -- Caution note -- */
+    .note {
+      background: var(--raised);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 16px 16px 0;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .note p { font-size: 14px; margin-bottom: 0; }
+
+    /* -- Steps -- */
+    ol.steps {
+      margin: 18px 0 0 0;
+      padding-left: 20px;
+    }
+
+    ol.steps li {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+      line-height: 1.7;
+      padding-left: 4px;
+    }
+
+    /* -- Contact -- */
+    .contact-block {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--petrol);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+
+    .contact-block p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .contact-block a {
+      font-size: 14px;
+      color: var(--petrol);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--petrol-mid);
+    }
+
+    .contact-block a:hover { border-bottom-width: 2px; }
+
+    main a { color: var(--petrol); }
+
+    /* -- Footer -- */
+    footer {
+      background: var(--petrol);
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      header, .callout { padding-left: 24px; padding-right: 24px; }
+      main { padding: 48px 24px 72px; }
+      footer { padding: 28px 24px; }
+      .zero-card { padding: 26px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="app-badge">
+      <div class="app-icon">L</div>
+      <span class="app-name">LISZ</span>
+    </div>
+    <h1>Privacy <em>&amp; Support</em></h1>
+    <p class="header-meta">Effective July 28, 2026 &nbsp;&middot;&nbsp; Revised August 8, 2026 &nbsp;&middot;&nbsp; Poolside Studios</p>
+    <nav class="header-nav">
+      <a href="#privacy">Privacy policy</a>
+      <a href="#support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<div class="callout">
+  <div class="callout-inner">
+    <span class="callout-icon">&#128274;</span>
+    <p><strong>The short version:</strong> your data stays yours. Everything you put into LISZ lives on your device and, if you enable it, in your personal iCloud account &mdash; unless you choose to add your own AI provider key, in which case the text of your captures also goes to that provider. We operate no servers, collect no analytics, show no ads, and cannot see your data.</p>
+  </div>
+</div>
+
+<main id="privacy">
+
+  <section>
+    <div class="section-number">01 &mdash; What LISZ stores</div>
+    <h2>On your device, and in your own iCloud.</h2>
+    <p>LISZ is a tool for organizing the work of running someone's life &mdash; clients, tasks, trips, properties, contacts, records, expenses, and notes. Everything you enter is stored in a database on your device.</p>
+    <p>If iCloud is enabled on your device, LISZ syncs this data through <strong>CloudKit's private database</strong>, which is tied to your Apple Account and encrypted by Apple. Only you can access it. We &mdash; the developers of LISZ &mdash; have no ability to read, access, or recover your data.</p>
+  </section>
+
+  <section>
+    <div class="section-number">02 &mdash; What we collect</div>
+    <h2>Nothing.</h2>
+    <div class="zero-card">
+      <p><strong>No analytics. No advertising. No tracking. No third-party SDKs.</strong> We operate no servers and never receive your data. By default, the only network traffic LISZ generates is Apple's iCloud sync between your own devices.</p>
+    </div>
+    <ul class="fact-list">
+      <li>No account creation is required &mdash; or possible. There is no LISZ login.</li>
+      <li>No name, email address, or contact information is ever sent to us.</li>
+      <li>No location data is accessed or tracked.</li>
+      <li>No usage statistics, behavioral data, or crash reports are sent to any server of ours.</li>
+      <li>No advertising identifiers and no tracking across apps or websites.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-number">03 &mdash; Optional: bring your own AI key</div>
+    <h2>Off by default, and entirely yours.</h2>
+    <p>LISZ can use on-device Apple Intelligence to help sort what you capture. If you choose to add your own API key for OpenAI, Anthropic, or another compatible provider &mdash; this is off by default and entirely optional &mdash; the text of your captures is sent directly from your device to that provider, under that provider's own privacy terms, to be classified.</p>
+    <p>Your API key is stored only on your device, in the iOS Keychain, and is never sent to us. If you don't add a key, this never happens.</p>
+  </section>
+
+  <section>
+    <div class="section-number">04 &mdash; Device permissions</div>
+    <h2>Asked for only when you use the feature.</h2>
+    <p>LISZ requests each permission at the moment the feature that needs it is used. All are optional; declining one disables only that feature.</p>
+    <ul class="fact-list permissions">
+      <li><strong>Calendars</strong> &mdash; read to find free windows in your schedule; LISZ only writes events you explicitly confirm, and only to calendars you've mapped.</li>
+      <li><strong>Camera</strong> &mdash; to scan receipts and documents. Scanning and text recognition happen on your device.</li>
+      <li><strong>Microphone &amp; speech recognition</strong> &mdash; to capture tasks by voice, and, if you use it, to record and transcribe a meeting. Transcription is performed by Apple's speech recognition service. By default the audio is deleted once transcription finishes and LISZ keeps only the resulting text. If you turn on the optional <strong>Keep Audio</strong> setting, the recording is kept instead, in a "LISZ Voice Recordings" folder in your own iCloud Drive, where you can find it, play it back, or delete it at any time.</li>
+      <li><strong>Photos</strong> &mdash; to let you choose a photo from your library for a profile picture, a receipt, a booking screenshot to import, or a trip/property cover photo.</li>
+      <li><strong>Contacts</strong> &mdash; LISZ uses Apple's system contact picker, which runs outside the app. LISZ receives only the single contact you select and stores a snapshot of it; the app has no access to the rest of your address book.</li>
+      <li><strong>Notifications</strong> &mdash; local reminders you schedule, plus silent background notifications Apple uses to keep iCloud sync current.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-number">05 &mdash; Sharing</div>
+    <h2>Only where you send it, when you send it.</h2>
+    <p>LISZ never shares your data automatically. When you export a card file, copy a drafted message, or use a share sheet, that data goes only where you send it, at the moment you send it.</p>
+  </section>
+
+  <section>
+    <div class="section-number">06 &mdash; Backups</div>
+    <h2>A single file, and it is not encrypted.</h2>
+    <p>LISZ's optional Backup &amp; Restore export writes everything in the app &mdash; including scanned documents, receipts, and photos &mdash; to a single JSON file on your device.</p>
+    <div class="note">
+      <p>This file is <strong>not encrypted.</strong> You choose where it's saved (iCloud Drive, Files, email, AirDrop, and so on), and it goes only where you send it. Treat it like the sensitive document it is: store and share it with the same care you'd give a folder of your own records and photos.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-number">07 &mdash; Deleting your data</div>
+    <h2>Yours to remove, at any time.</h2>
+    <p>You can delete any item inside the app at any time. To remove everything:</p>
+    <ol class="steps">
+      <li>Delete the app from your device.</li>
+      <li>Open <em>Settings &rarr; [your name] &rarr; iCloud &rarr; Manage Account Storage &rarr; LISZ</em> and remove LISZ's iCloud data.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="section-number">08 &mdash; Children</div>
+    <h2>Not directed at children.</h2>
+    <p>LISZ is not directed at children under 13, and we do not knowingly collect information from them &mdash; or from anyone else, for that matter.</p>
+  </section>
+
+  <section>
+    <div class="section-number">09 &mdash; Changes to this policy</div>
+    <h2>If anything changes, you'll know first.</h2>
+    <p>If LISZ's data practices ever change, this page will be updated and the effective date above revised before the change takes effect.</p>
+  </section>
+
+  <section id="support">
+    <div class="section-number">10 &mdash; Support</div>
+    <h2>Getting help with LISZ.</h2>
+    <p>LISZ has no account and no login, so there is nothing to recover and no password to reset. For anything else &mdash; a bug, a question, a feature request, or trouble with iCloud sync &mdash; email us and we will answer.</p>
+
+    <h3>Before you write in</h3>
+    <ul class="fact-list">
+      <li><strong>Sync trouble?</strong> Check that iCloud Drive is on and that both devices are signed into the same Apple Account, then open <em>More &rarr; Settings</em> in LISZ and run Data Health.</li>
+      <li><strong>Something looks missing?</strong> LISZ filters by the project you have selected. Switch to <strong>All projects</strong> and look again before reporting it gone.</li>
+      <li><strong>Reporting a bug?</strong> Tell us your device, your iOS version, the LISZ version and build number (shown in <em>More &rarr; Profile</em>), and what you did just before it happened.</li>
+    </ul>
+
+    <div class="contact-block">
+      <p>Poolside Studios &mdash; LISZ support</p>
+      <a href="mailto:liszsupport@icloud.com">liszsupport@icloud.com</a>
+    </div>
+    <p style="margin-top:14px;font-size:14px;">We aim to reply within two business days.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Poolside Studios &nbsp;&middot;&nbsp; LISZ &nbsp;&middot;&nbsp; All rights reserved</p>
+</footer>
+
+</body>
+</html>
