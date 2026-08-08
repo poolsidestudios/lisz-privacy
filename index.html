@@ -80,36 +80,27 @@
       position: relative;
     }
 
-    .app-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 100px;
-      padding: 6px 16px 6px 7px;
-      margin-bottom: 28px;
-    }
-
-    .app-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--on-petrol);
-      color: var(--petrol);
-      border-radius: 8px;
+    .lockup {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .mark {
+      width: 56px;
+      height: 56px;
+      flex: none;
+      display: block;
+      border-radius: 13px;      /* iOS squircle proportion at this size */
+      box-shadow: 0 3px 14px rgba(0,0,0,0.28);
     }
 
     .app-name {
-      font-size: 11px;
+      font-size: 15px;
       font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -391,8 +382,45 @@
 
 <header>
   <div class="header-inner">
-    <div class="app-badge">
-      <div class="app-icon">L</div>
+    <div class="lockup">
+      <svg class="mark" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LISZ">
+        <defs>
+          <radialGradient id="lzBg" gradientUnits="userSpaceOnUse" cx="430" cy="380" r="760">
+            <stop offset="0" stop-color="#F7F6F3"/><stop offset="1" stop-color="#E6E5E1"/>
+          </radialGradient>
+          <radialGradient id="lzShadow" gradientUnits="userSpaceOnUse" cx="512" cy="700" r="250">
+            <stop offset="0" stop-color="#000" stop-opacity="0.42"/>
+            <stop offset="0.55" stop-color="#000" stop-opacity="0.231"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lzArch" gradientUnits="userSpaceOnUse" x1="312" y1="300" x2="712" y2="720">
+            <stop offset="0" stop-color="#526D85"/><stop offset="1" stop-color="#142C42"/>
+          </linearGradient>
+          <linearGradient id="lzDoor" gradientUnits="userSpaceOnUse" x1="386" y1="470" x2="386" y2="742">
+            <stop offset="0" stop-color="#DEDDDA"/><stop offset="1" stop-color="#F7F6F3"/>
+          </linearGradient>
+          <radialGradient id="lzBall" gradientUnits="userSpaceOnUse" cx="500" cy="612" r="70" fx="500" fy="612">
+            <stop offset="0" stop-color="#DAC8A6"/><stop offset="1" stop-color="#977F53"/>
+          </radialGradient>
+          <radialGradient id="lzBallHi" gradientUnits="userSpaceOnUse" cx="496" cy="606" r="22">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.7"/>
+            <stop offset="0.6" stop-color="#fff" stop-opacity="0.245"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="lzSheen" gradientUnits="userSpaceOnUse" cx="420" cy="400" r="150">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.34"/>
+            <stop offset="0.6" stop-color="#fff" stop-opacity="0.119"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1024" height="1024" fill="url(#lzBg)"/>
+        <ellipse cx="512" cy="700" rx="250" ry="150" fill="url(#lzShadow)"/>
+        <path d="M 312 720 L 312 470 A 200 200 0 0 1 712 470 L 712 720 Q 712 742 690 742 L 334 742 Q 312 742 312 720 Z" fill="url(#lzArch)"/>
+        <path d="M 386 742 L 386 478 A 126 126 0 0 1 638 478 L 638 742 Z" fill="url(#lzDoor)"/>
+        <circle cx="512" cy="624" r="52" fill="url(#lzBall)"/>
+        <ellipse cx="496" cy="606" rx="22" ry="16" fill="url(#lzBallHi)"/>
+        <ellipse cx="420" cy="400" rx="120" ry="150" fill="url(#lzSheen)"/>
+      </svg>
       <span class="app-name">LISZ</span>
     </div>
     <h1>Privacy <em>&amp; Support</em></h1>
