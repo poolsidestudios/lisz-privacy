@@ -279,10 +279,8 @@
     }
 
     .fact-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 14px 0;
+      position: relative;
+      padding: 14px 0 14px 26px;
       border-bottom: 1px solid var(--rule);
       font-size: 15px;
       color: var(--ink-light);
@@ -293,14 +291,15 @@
 
     .fact-list li::before {
       content: '\2713';
+      position: absolute;
+      left: 0;
+      top: 17px;
       font-size: 12px;
       color: var(--petrol);
       font-weight: 700;
-      margin-top: 3px;
-      flex-shrink: 0;
     }
 
-    .fact-list.permissions li::before { content: '\2022'; font-size: 16px; margin-top: 0; }
+    .fact-list.permissions li::before { content: '\2022'; font-size: 16px; top: 14px; }
 
     /* -- Caution note -- */
     .note {
