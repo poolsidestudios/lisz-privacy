@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started - LISZ</title>
+  <meta name="description" content="Getting started with LISZ: your first Brain dump, connecting a calendar, handing off and chasing, and the weekly review." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* LISZ design system - light appearance (BEZZLColors) */
+      --petrol:      #1c3f5e;  /* BEZZLAccent        */
+      --petrol-mid:  #2a5a83;
+      --muted:       #e8eef4;  /* BEZZLAccentMuted   */
+      --paper:       #f7f6f2;  /* BEZZLBackground    */
+      --surface:     #ffffff;  /* BEZZLSurface       */
+      --raised:      #f0eee9;  /* BEZZLSurfaceRaised */
+      --ink:         #14161a;  /* BEZZLTextPrimary   */
+      --ink-light:   #55606c;  /* BEZZLTextSecondary */
+      --rule:        rgba(28,63,94,0.14);
+      --on-petrol:   #ffffff;
+      --amber:       #b45309;  /* BEZZLWarning       */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --petrol:     #5b9ec9;
+        --petrol-mid: #7fb4d6;
+        --muted:      #1e2c38;
+        --paper:      #131210;
+        --surface:    #1c1b18;
+        --raised:     #242320;
+        --ink:        #f2f1ee;
+        --ink-light:  #a8a49c;
+        --rule:       rgba(91,158,201,0.20);
+        --on-petrol:  #0d1218;
+        --amber:      #ffa726;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* -- Header -- */
+    header {
+      background: var(--petrol);
+      padding: 56px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,255,255,0.025) 40px,
+          rgba(255,255,255,0.025) 41px
+        );
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .mark {
+      width: 56px;
+      height: 56px;
+      flex: none;
+      display: block;
+      border-radius: 13px;      /* iOS squircle proportion at this size */
+      box-shadow: 0 3px 14px rgba(0,0,0,0.28);
+    }
+
+    .app-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 600;
+      color: var(--on-petrol);
+      line-height: 1.12;
+      margin-bottom: 16px;
+      letter-spacing: -0.025em;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .header-meta {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .header-nav {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .header-nav a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+
+    .header-nav a:hover {
+      color: var(--on-petrol);
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    /* -- Callout banner -- */
+    .callout {
+      background: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding: 20px 40px;
+    }
+
+    .callout-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .callout-icon {
+      font-size: 18px;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    .callout p {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .callout strong { font-weight: 600; }
+
+    /* -- Main content -- */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px 96px;
+    }
+
+    section {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 24px;
+    }
+
+    section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-number {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--petrol);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 8px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--ink); font-weight: 600; }
+
+    em { font-style: italic; }
+
+    /* -- Highlight card -- */
+    .zero-card {
+      background: var(--petrol);
+      border-radius: 20px;
+      padding: 32px 36px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zero-card::after {
+      content: '0';
+      position: absolute;
+      right: 4px;
+      top: -34px;
+      font-size: 170px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .zero-card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 15px;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .zero-card strong {
+      color: var(--on-petrol);
+      font-weight: 600;
+    }
+
+    /* -- Fact / permission list -- */
+    .fact-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .fact-list li {
+      position: relative;
+      padding: 14px 0 14px 26px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 15px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    .fact-list li:last-child { border-bottom: none; }
+
+    .fact-list li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      top: 17px;
+      font-size: 12px;
+      color: var(--petrol);
+      font-weight: 700;
+    }
+
+    .fact-list.permissions li::before { content: '\2022'; font-size: 16px; top: 14px; }
+
+    /* -- Caution note -- */
+    .note {
+      background: var(--raised);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 16px 16px 0;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .note p { font-size: 14px; margin-bottom: 0; }
+
+    /* -- Steps -- */
+    ol.steps {
+      margin: 18px 0 0 0;
+      padding-left: 20px;
+    }
+
+    ol.steps li {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+      line-height: 1.7;
+      padding-left: 4px;
+    }
+
+    /* -- Contact -- */
+    .contact-block {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--petrol);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+
+    .contact-block p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .contact-block a {
+      font-size: 14px;
+      color: var(--petrol);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--petrol-mid);
+    }
+
+    .contact-block a:hover { border-bottom-width: 2px; }
+
+    main a { color: var(--petrol); }
+
+    /* -- Footer -- */
+    footer {
+      background: var(--petrol);
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+
+    /* -- Getting-started page additions -- */
+    body { overflow-x: hidden; }
+    main { overflow-wrap: break-word; }
+
+    .callout.version-note { padding-top: 12px; padding-bottom: 12px; }
+    .callout.version-note p { font-size: 13px; color: var(--ink-light); }
+
+    ul.bullets {
+      list-style: disc;
+      margin: 18px 0 0 0;
+      padding-left: 20px;
+    }
+
+    ul.bullets li {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+      line-height: 1.7;
+      padding-left: 4px;
+    }
+
+    .example {
+      background: var(--raised);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--petrol);
+      border-radius: 0 16px 16px 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    .callout.inline-warn {
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 16px 16px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .contact-block.downloads { margin-top: 0; margin-bottom: 52px; }
+
+    footer a {
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    footer p + p { margin-top: 14px; }
+
+    @media (max-width: 600px) {
+      header, .callout { padding-left: 16px; padding-right: 16px; }
+      main { padding: 40px 16px 72px; }
+      footer { padding: 28px 16px; }
+      .example { padding: 16px 16px; }
+      .callout.inline-warn { padding: 16px 16px; }
+      .contact-block.downloads { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="lockup">
+      <svg class="mark" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LISZ">
+        <defs>
+          <radialGradient id="lzBg" gradientUnits="userSpaceOnUse" cx="430" cy="380" r="760">
+            <stop offset="0" stop-color="#F7F6F3"/><stop offset="1" stop-color="#E6E5E1"/>
+          </radialGradient>
+          <radialGradient id="lzShadow" gradientUnits="userSpaceOnUse" cx="512" cy="700" r="250">
+            <stop offset="0" stop-color="#000" stop-opacity="0.42"/>
+            <stop offset="0.55" stop-color="#000" stop-opacity="0.231"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lzArch" gradientUnits="userSpaceOnUse" x1="312" y1="300" x2="712" y2="720">
+            <stop offset="0" stop-color="#526D85"/><stop offset="1" stop-color="#142C42"/>
+          </linearGradient>
+          <linearGradient id="lzDoor" gradientUnits="userSpaceOnUse" x1="386" y1="470" x2="386" y2="742">
+            <stop offset="0" stop-color="#DEDDDA"/><stop offset="1" stop-color="#F7F6F3"/>
+          </linearGradient>
+          <radialGradient id="lzBall" gradientUnits="userSpaceOnUse" cx="500" cy="612" r="70" fx="500" fy="612">
+            <stop offset="0" stop-color="#DAC8A6"/><stop offset="1" stop-color="#977F53"/>
+          </radialGradient>
+          <radialGradient id="lzBallHi" gradientUnits="userSpaceOnUse" cx="496" cy="606" r="22">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.7"/>
+            <stop offset="0.6" stop-color="#fff" stop-opacity="0.245"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="lzSheen" gradientUnits="userSpaceOnUse" cx="420" cy="400" r="150">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.34"/>
+            <stop offset="0.6" stop-color="#fff" stop-opacity="0.119"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1024" height="1024" fill="url(#lzBg)"/>
+        <ellipse cx="512" cy="700" rx="250" ry="150" fill="url(#lzShadow)"/>
+        <path d="M 312 720 L 312 470 A 200 200 0 0 1 712 470 L 712 720 Q 712 742 690 742 L 334 742 Q 312 742 312 720 Z" fill="url(#lzArch)"/>
+        <path d="M 386 742 L 386 478 A 126 126 0 0 1 638 478 L 638 742 Z" fill="url(#lzDoor)"/>
+        <circle cx="512" cy="624" r="52" fill="url(#lzBall)"/>
+        <ellipse cx="496" cy="606" rx="22" ry="16" fill="url(#lzBallHi)"/>
+        <ellipse cx="420" cy="400" rx="120" ry="150" fill="url(#lzSheen)"/>
+      </svg>
+      <span class="app-name">LISZ</span>
+    </div>
+    <h1>Getting started <em>with LISZ</em></h1>
+    <nav class="header-nav">
+      <a href="index.html">Privacy and support</a>
+    </nav>
+  </div>
+</header>
+
+<div class="callout version-note">
+  <div class="callout-inner">
+    <p>For LISZ 2.0. The same manual is in the app under Settings - Starter Manual and as a PDF there.</p>
+  </div>
+</div>
+
+<main>
+
+  <div class="contact-block downloads">
+    <p><strong>The illustrated version.</strong> The same manual comes as two PDFs, one per setup:</p>
+    <p><a href="LISZ-Manual-Estate.pdf">LISZ-Manual-Estate.pdf</a></p>
+    <p><a href="LISZ-Manual-Personal.pdf">LISZ-Manual-Personal.pdf</a></p>
+  </div>
+
+  <section>
+    <p>You don't need to set everything up before this is useful. Just two things, and you're already ahead.</p>
+    <p><em>(One note on wording: this guide uses "Clients," "Properties," and "Trips" - the language you'll see if you picked "Someone else" at setup. Picked "Just me" instead? Read those as "Projects," "Locations," and "Gigs / Travels" - same screens, different labels. The dossier is a "Fact Sheet" there, and the default world "Personal" is "My Life".)</em></p>
+  </section>
+
+  <section>
+    <h2>The 60-second version</h2>
+    <p>Don't organize first. Dump first.</p>
+    <p>The whole point of LISZ is that you don't have to sort anything in the moment - a client rattles off six things in one breath, or your own week is a mess of half-formed to-dos, and you just get the words down. LISZ figures out what each one is. Your job is to capture, not to file.</p>
+    <p>So here's the order that actually matters:</p>
+    <ol class="steps">
+      <li><strong>Connect a calendar FIRST</strong> - <strong>Clients</strong> tab, open <strong>My life</strong> (it is there from day one) or any client, <strong>Open workspace</strong>, <strong>Calendars</strong>, <strong>Connect calendars</strong>. Do this before your first Brain dump: an event you confirm is placed on that calendar. With no calendar connected it stays inside LISZ only, and the review tells you it will not be placed.</li>
+      <li><strong>Then your first Brain dump</strong> - tap the round capture button beside the tabs, tap <strong>Brain dump</strong>, one thought per line, tap <strong>Done</strong>, then review.</li>
+    </ol>
+    <p style="margin-top:14px;">Everything else in the app is there when you need it. Nothing else needs your attention on day one.</p>
+  </section>
+
+  <section>
+    <h2>First: connect a calendar</h2>
+    <p>LISZ doesn't have its own calendar - it reads and writes the ones already on your phone. That's deliberate: no separate login, no new password, just the calendars you already have through Apple (including a Google or Outlook calendar, if you've added that account in the iPhone's own Settings, Apps, Calendar, Accounts, with Calendars turned on).</p>
+    <div class="callout inline-warn">
+      <p><strong>This is not optional for scheduling.</strong> Every event you confirm from a review is placed on the client's connected calendar. With none connected, the review warns that the event will not be placed, it lives in LISZ only, nothing reaches your phone's calendar, and "when am I free" has nothing to read. Connect one for My life, and one per client you add.</p>
+    </div>
+    <p>Where: <strong>Clients</strong> tab, open <strong>My life</strong> or a client, <strong>Open workspace</strong>, <strong>Calendars</strong>, <strong>Connect calendars</strong>. Tick which calendars belong to this client (or to you, if it's just you - in the Personal workspace the tab is <strong>Projects</strong>), and star the one new events should default to. Open workspace sits at the top of a client's page, and tapping the ring on a client's card opens it too. Calendars live on the device, so if you use an iPhone and an iPad, tick them once on each.</p>
+  </section>
+
+  <section>
+    <h2>The one habit: your first Brain dump</h2>
+    <p>This is the one habit worth building. Everything else follows from it.</p>
+    <p>Tap the round capture button beside the tabs and tap <strong>Brain dump</strong>. You'll get a blank page. Type or dictate whatever's in your head (the mic says <strong>Tap to dictate</strong>), one thought per line, in whatever order it comes out. No fields, no picking a category first. Something like:</p>
+    <pre class="example" aria-label="Example Brain dump lines">Call the plumber tomorrow at 9
+Paid the gardener 80 bucks
+Dinner with Molly Friday 8pm
+Note: gate code is 4421</pre>
+    <p>Tap <strong>Done</strong>, and the page opens a review. Nothing is filed until you confirm it. LISZ reads each line and works out what it actually is - a task with a due date, an expense with an amount, an event that wants a calendar, a plain note.</p>
+    <div class="callout inline-warn">
+      <p><strong>Events need a connected calendar.</strong> A line that is an event is placed on the client's connected calendar when you confirm. If none is connected the review says so - the event will not be placed - and it stays in LISZ only. Connect the calendar first (previous section).</p>
+    </div>
+    <p>On the review page everything is already sorted and pre-filled - a guessed date, a guessed contact, a guessed calendar. Each line has a dot for the type LISZ read it as, and a flag where it was unsure, so your eye goes there first. You're not typing any of it in; you're just glancing and fixing anything that's off. Tap <strong>Confirm all</strong> (it says how many) and it's all filed.</p>
+    <p>The page's <strong>...</strong> menu holds <strong>Photo capture</strong>, <strong>Guided issue report</strong> and <strong>Review</strong>. The photo button beside <strong>Meeting</strong> starts a Photo capture too.</p>
+    <p><strong>Words that open an issue.</strong> Start a line with test, fix, repair, service, replace, install, inspect, paint or adjust and name a system you have saved, such as the gate or the pool heater, and it opens as an issue with what, where, who, when and cost filled: "Fix the pool heater, Friday, $400". Check and clean don't count; they're errands and stay tasks.</p>
+    <p>That's it. That's the whole trick. The messier the input, the more it's earning its keep.</p>
+  </section>
+
+  <section>
+    <h2>Every way in: the Capture hub</h2>
+    <p>The round capture button opens the <strong>Capture hub</strong>. <strong>Brain dump</strong> is the card at the top and the one to learn first; under it:</p>
+    <ul class="bullets">
+      <li><strong>Magic paste</strong> - a booking email, PDF, or photo becomes a whole trip.</li>
+      <li><strong>Voice task</strong> - speak one thing; dates said out loud are understood.</li>
+      <li><strong>Snap receipt</strong> - merchant, amount and date fill themselves in.</li>
+      <li><strong>Scan document</strong> - camera to filed record, with an expiry date.</li>
+      <li><strong>Record meeting</strong> - only for a client you have marked as fine to record.</li>
+    </ul>
+    <p style="margin-top:14px;">Hold the capture button instead of tapping it to jump straight to <strong>Photo</strong>, <strong>Voice</strong> or <strong>Record meeting</strong>. You never have to pick the right way in - anything can be re-filed during review.</p>
+    <p>Four ways to report an issue: a captured line that starts with a work word, <strong>Guided issue report</strong>, the New issue sheet, or <strong>Photo capture</strong> first.</p>
+  </section>
+
+  <section>
+    <h2>A day on Today</h2>
+    <p>Under the date and the <strong>Pulse</strong> pill, <strong>Next</strong> shows your open time, a timer and any <strong>Soft hold</strong>. <strong>Needs you</strong> lists what is yours to move - five at most - and a safety item gets an <strong>Act now</strong> band on top. Below it:</p>
+    <ul class="bullets">
+      <li><strong>Review N captures</strong> when captures are waiting.</li>
+      <li>The handed-off row: what is back to you and what has gone quiet. Tap it to open <strong>In flight</strong>.</li>
+      <li>The row for clients needing attention opens <strong>Clients</strong>.</li>
+      <li>Today's events, <strong>Busy day tomorrow</strong>, your trips, and the <strong>Weekly review</strong> card.</li>
+      <li><strong>By day</strong> shows the week. On iPad the days column sits beside the briefing.</li>
+      <li>The foot row: <strong>N overdue</strong> opens By day, <strong>N online</strong> opens <strong>Runs</strong>.</li>
+    </ul>
+    <p style="margin-top:14px;">The icons at the top of Today open <strong>By day</strong>, <strong>Canvas</strong> and <strong>Runs</strong>.</p>
+  </section>
+
+  <section>
+    <h2>The loop: handing off, and chasing</h2>
+    <p>The <strong>Work</strong> tab holds <strong>Handoffs</strong>, <strong>Waiting</strong> and <strong>Trips</strong>. Its cards count what is in flight, what is back to you and what has gone quiet; <strong>Open board</strong> shows everything in flight. Open a handoff and:</p>
+    <ul class="bullets">
+      <li><strong>Nudge</strong> drafts the chase. You still send it yourself - LISZ never messages anyone for you - and sending resets the clock.</li>
+      <li><strong>Log a reply</strong> when they answer.</li>
+      <li><strong>Confirm</strong> closes the loop: <strong>Confirm and close the issue</strong>, or <strong>Confirm the handoff only</strong>. <strong>Mark done</strong> finishes it.</li>
+    </ul>
+    <p style="margin-top:14px;">The state reads Sent, Replied or Confirmed. LISZ can't tell whether someone has seen your message, so "Seen" isn't a state.</p>
+  </section>
+
+  <section>
+    <h2>Clients</h2>
+    <p>The <strong>Clients</strong> tab shows one card per client with a ring for its health; clients needing attention come first. Tap a card for its dossier - one page of contacts, sizes, key dates and the facts that matter. Tap the ring, or <strong>Open workspace</strong> at the top of the dossier, for the whole workspace: properties, trips, records, calendars, scope and briefing.</p>
+    <p>A property opens as a brief: <strong>Upkeep</strong>, <strong>Open issues</strong>, <strong>The house runs on</strong> (with <strong>Reorder</strong>) and <strong>Standing rhythm</strong>. Below the photo a strip offers <strong>Manage</strong> (the previous property screen), <strong>Report an issue</strong> and <strong>Turnover brief</strong>, which can be shared with <strong>Share brief</strong>; <strong>Choose</strong> picks who shows under People on the ground. A trip inside its travel days opens as routing - <strong>Route</strong>, <strong>House</strong>, <strong>Keys</strong>, <strong>Files</strong> - and <strong>Full trip</strong> opens the previous trip screen.</p>
+  </section>
+
+  <section>
+    <h2>Runs and the Canvas</h2>
+    <p>Both open from the icons at the top of Today. <strong>Runs</strong> puts everything of one kind - all the calls, all the errands, all the online work - in one lane across every client, so you stay in one gear. The <strong>Canvas</strong> shows every client as a coloured lane on one shared timeline, so overlaps are visible at a glance; the pills across the top narrow it to one client or two side by side.</p>
+  </section>
+
+  <section>
+    <h2>Search and the command sheet</h2>
+    <p>Search at the top right opens the command sheet. Type and results come first. Under them are the actions: <strong>New handoff</strong>, <strong>Draft client update</strong>, <strong>Log an expense</strong> and <strong>Coverage pack</strong>. <strong>Go to</strong> lists the workspace sections in workspace order, then Settings, All entries, <strong>Agenda</strong> and <strong>Weekly review</strong>. The first five rows show; <strong>Everything else</strong> reveals the rest.</p>
+  </section>
+
+  <section>
+    <h2>Time and money</h2>
+    <p><strong>The full calendar.</strong> Today shows today. For the whole picture open <strong>Go to</strong>, then <strong>Agenda</strong>, in the command sheet. Prefer the previous Today, which has Agenda and calendar on it? Settings, Today, <strong>Today tab</strong> off brings it back.</p>
+    <p><strong>Free time.</strong> Because LISZ reads every calendar you ticked, the open time in <strong>Next</strong> is a real gap, not a guess.</p>
+    <p><strong>Money you fronted.</strong> Say it in a Brain dump ("paid the gardener 80 bucks"), snap the receipt, or choose <strong>Log an expense</strong> in the command sheet. <strong>Expenses</strong> lives in the sheet behind your profile avatar.</p>
+  </section>
+
+  <section>
+    <h2>Once a week: the weekly review</h2>
+    <p>The keystone habit, started from the <strong>Weekly review</strong> card on Today or from <strong>Go to</strong>. It empties your waiting captures first, then walks you through every client one at a time - the stalled ones first - asking a single question of each: is there one clear next action here? If not, you type one on the spot without leaving the review. Nothing quietly rots.</p>
+  </section>
+
+  <section>
+    <h2>The rest of the app, briefly</h2>
+    <ul class="bullets">
+      <li><strong>Today</strong> - what needs you, what is next, what is handed off.</li>
+      <li><strong>Work</strong> - Handoffs, Waiting and Trips.</li>
+      <li><strong>Clients</strong> - one card per client; Open workspace for its whole world.</li>
+      <li><strong>The capture button</strong> - the round button beside the tabs: the Capture hub; hold it for Photo, Voice or Record meeting.</li>
+      <li><strong>Your avatar</strong> - top right. The You sheet: your profile, Settings, then People, All entries, Expenses, Documents and Notes.</li>
+      <li><strong>The client switcher</strong> - top left: Open workspace, All clients, the default world (Personal), then each client.</li>
+    </ul>
+    <p style="margin-top:14px;">The top line reads the same on every tab: the switcher on the left, search and your avatar on the right. This manual lives at <strong>Settings - Starter Manual</strong>, and behind the <strong>?</strong> on the previous-interface screens.</p>
+  </section>
+
+  <section>
+    <h2>You're good</h2>
+    <p>Two habits carry the whole thing: dump early and often, and once a week run the weekly review. Don't wait until you're organized to write something down - write it down and let LISZ organize it. The rest sorts itself out from there.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Poolside Studios &nbsp;&middot;&nbsp; LISZ &nbsp;&middot;&nbsp; All rights reserved</p>
+  <p><a href="index.html">Privacy and support</a></p>
+</footer>
+
+</body>
+</html>
